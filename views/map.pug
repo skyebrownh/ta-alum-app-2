@@ -1,4 +1,18 @@
 extends base.pug
 
+block links
+  link(rel='stylesheet', type="text/css", href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css')
+  //- custom stylesheet if needed
+  link(rel='stylesheet', type="text/css", href='/map.css')
+
 block body
-  h1 Map
+  //- h1 Map
+  script
+    (
+      const mapboxgl = require('mapbox-gl');
+      mapboxgl.accessToken = '';
+      const map = new mapboxgl.Map({
+        container: '<HTML element id>',
+        style: '<style id>'
+      });
+    )
