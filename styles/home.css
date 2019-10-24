@@ -12,17 +12,26 @@
   right: -80px;
 }
 
+.content {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+}
+
 .content h1 {
-  width: 40%;
+  width: 57%;
   font-size: 3rem;
   font-weight: bold;
   text-transform: uppercase;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
 }
 
 .content p {
-  width: 40%;
-  font-size: 1rem;
+  width: 50%;
+  font-size: 1.2rem;
   font-weight: 400;
+  margin-bottom: 40px;
 }
 
 .content button {
@@ -31,8 +40,20 @@
   outline: none;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
-  font-weight: bold;
+  padding: 18px 42px;
+  font-weight: 800;
   font-size: 1rem;
   text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.content button:hover {
+  cursor: pointer;
+  background: #333;
+  color: white;
+}
+
+.content button:active {
+  background: white;
+  color: #333;
 }

@@ -12,7 +12,7 @@ app.locals.cache = false;
 
 // routes
 app.get('/', (req, res) => {
-  res.render('home', { title: 'Team Alpha Alumni App' });
+  res.render('home', { title: 'Team Alpha Alumni | Home' });
 });
 
 // run application
