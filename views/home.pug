@@ -1,7 +1,12 @@
 extends base.pug
 
 block links
-  link(rel='stylesheet', href='../styles/home.css')
+  link(rel='stylesheet', type="text/css", href='/home.css')
 
 block body
-  h1 Hello, World!
+  div.wrapper
+    img#triangle-img(src='/Ainc_Traingle_White.png')
+    div.content
+      h1 Ready to connect with some awesome people?
+      p Find out if other Awesome Inc Team Alpha Alumni is in your area!
+      button Go To Map

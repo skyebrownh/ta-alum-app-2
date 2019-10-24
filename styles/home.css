@@ -1,0 +1,38 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: url('/Lex_Map_Alumni.png') no-repeat center center fixed;
+  color: white;
+}
+
+#triangle-img {
+  position: absolute;
+  width: 45%;
+  bottom: 0;
+  right: -80px;
+}
+
+.content h1 {
+  width: 40%;
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.content p {
+  width: 40%;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.content button {
+  background: white;
+  color: #333;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
