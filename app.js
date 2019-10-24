@@ -15,6 +15,10 @@ app.get('/', (req, res) => {
   res.render('home', { title: 'Team Alpha Alumni | Home' });
 });
 
+app.get('/map', (req, res) => {
+  res.render('map', { title: 'Team Alpha Alumni | Map' });
+});
+
 // run application
 app.listen(3000, () => {
   console.log('listening on port 3000...');
