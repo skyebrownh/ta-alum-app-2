@@ -1,0 +1,23 @@
+{
+  "name": "ta-alum-app-2",
+  "version": "1.0.0",
+  "description": "Awesome Inc's Team Alpha Alumni Web Application 2.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skyebrownh/ta-alum-app-2.git"
+  },
+  "author": "Skye Brown",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skyebrownh/ta-alum-app-2/issues"
+  },
+  "homepage": "https://github.com/skyebrownh/ta-alum-app-2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
+  }
+}
