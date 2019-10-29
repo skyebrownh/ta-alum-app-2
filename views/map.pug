@@ -7,12 +7,11 @@ block links
 
 block body
   //- h1 Map
-  script
-    (
-      const mapboxgl = require('mapbox-gl');
-      mapboxgl.accessToken = '';
-      const map = new mapboxgl.Map({
-        container: '<HTML element id>',
-        style: '<style id>'
-      });
-    )
+  div#mapbox
+  script.
+    const mapboxgl = require('mapbox-gl');
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2t5ZWJyb3duaCIsImEiOiJjazJjOWhzd2owYnE0M2dxa2tranJyaXN1In0.8-EhU6QpfL2Vgp-m-wDV8A';
+    const map = mapboxgl.Map({
+      container: 'mapbox',
+      style: 'mapbox://styles/mapbox/dark-v10'
+    });
