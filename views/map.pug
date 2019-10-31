@@ -1,17 +1,18 @@
 extends base.pug
 
 block links
+  //- mapbox cdn
+  script(src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js')
   link(rel='stylesheet', type="text/css", href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css')
   //- custom stylesheet if needed
   link(rel='stylesheet', type="text/css", href='/map.css')
 
 block body
   //- h1 Map
-  div#mapbox
+  div#mapbox(style={ width: '400px', height: '300px' })
   script.
-    const mapboxgl = require('mapbox-gl');
     mapboxgl.accessToken = 'pk.eyJ1Ijoic2t5ZWJyb3duaCIsImEiOiJjazJjOWhzd2owYnE0M2dxa2tranJyaXN1In0.8-EhU6QpfL2Vgp-m-wDV8A';
-    const map = mapboxgl.Map({
+    const map = new mapboxgl.Map({
       container: 'mapbox',
       style: 'mapbox://styles/mapbox/dark-v10'
     });
