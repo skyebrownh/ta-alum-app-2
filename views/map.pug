@@ -9,10 +9,16 @@ block links
 
 block body
   //- h1 Map
-  div#mapbox(style={ width: '400px', height: '300px' })
+  div#mapbox
   script.
     mapboxgl.accessToken = 'pk.eyJ1Ijoic2t5ZWJyb3duaCIsImEiOiJjazJjOWhzd2owYnE0M2dxa2tranJyaXN1In0.8-EhU6QpfL2Vgp-m-wDV8A';
-    const map = new mapboxgl.Map({
-      container: 'mapbox',
-      style: 'mapbox://styles/mapbox/dark-v10'
-    });
+    if (!mapboxgl.supported()) {
+      alert('Your browser does not support Mapbox GL');
+    } else {
+      const map = new mapboxgl.Map({
+        container: 'mapbox',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        center: [38.0406, -84.5037],
+        zoom: 4
+      });
+    }
