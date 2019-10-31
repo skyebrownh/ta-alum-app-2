@@ -4,7 +4,7 @@
   "description": "Awesome Inc's Team Alpha Alumni Web Application 2.0",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
