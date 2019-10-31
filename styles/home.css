@@ -1,7 +1,10 @@
 .wrapper {
   width: 100vw;
   height: 100vh;
-  background: url('/Lex_Map_Alumni.png') no-repeat center center fixed;
+  background-image: url('/Lex_Map_Alumni.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   color: white;
 }
 
