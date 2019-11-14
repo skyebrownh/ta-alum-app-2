@@ -4,3 +4,15 @@
   bottom: 0;
   width: 100%;
 }
+
+.marker {
+  display: block;
+  background-image: url('/ainc-logo-triangle-layer-red.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.marker:hover {
+  cursor: pointer;
+}
