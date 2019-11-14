@@ -16,3 +16,7 @@
 .marker:hover {
   cursor: pointer;
 }
+
+.popup {
+  max-width: 200px;
+}

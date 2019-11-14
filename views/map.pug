@@ -23,6 +23,9 @@ block body
       });
       // add zoom and rotation controls to map
       map.addControl(new mapboxgl.NavigationControl());
+      // create marker popup
+      const popup = new mapboxgl.Popup({ offset: 25 })
+        .setText('This is AInc Alumni member text info.');
       // FIXME: populate JSON from mongodb
       const geojson = {
         "type": "FeatureCollection",
@@ -50,12 +53,13 @@ block body
         el.style.width = marker.properties.iconSize[0] + 'px';
         el.style.height = marker.properties.iconSize[1] + 'px';
 
-        el.addEventListener('click', () => {
-          window.alert(marker.properties.message);
-        });
+        //- el.addEventListener('click', () => {
+        //-   window.alert(marker.properties.message);
+        //- });
 
         new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
+          .setPopup(popup) // binds popup to this marker
           .addTo(map);
         console.log('forEach marker');
       });
