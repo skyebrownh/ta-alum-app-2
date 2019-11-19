@@ -8,7 +8,6 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'styles')));
 app.use(express.static(path.join(__dirname, 'images')));
 app.use(express.static(path.join(__dirname, 'scripts')));
-app.use(express.static(path.join(__dirname, 'utils')));
 // app.locals not needed when NODE_ENV is set properly (production = no compileDebug mode, caching used)
 app.locals.compileDebug = true; // for development only
 app.locals.cache = false;
