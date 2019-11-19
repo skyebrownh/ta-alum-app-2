@@ -8,11 +8,5 @@ block links
   link(rel='stylesheet', type="text/css", href='/map.css')
 
 block body
-  //- h1 Map
-  div#mapbox(style={ width: '400px', height: '300px' })
-  script.
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic2t5ZWJyb3duaCIsImEiOiJjazJjOWhzd2owYnE0M2dxa2tranJyaXN1In0.8-EhU6QpfL2Vgp-m-wDV8A';
-    const map = new mapboxgl.Map({
-      container: 'mapbox',
-      style: 'mapbox://styles/mapbox/dark-v10'
-    });
+  div#mapbox
+  script(src="/map.js")
