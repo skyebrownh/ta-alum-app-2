@@ -10,8 +10,6 @@ mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: t
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-    // query saved documents
-    Location.findOne({ city: 'Lexington' }, (err, res) => {
-        console.log(`Lexington found: ${res}`);
-    });
+    // TODO: query saved documents to show on map
 });
+

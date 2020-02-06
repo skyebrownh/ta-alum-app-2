@@ -20,7 +20,7 @@ const memberSchema = mongoose.Schema({
     company: String,
     position: String,
     location: {
-        type: mongoose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Location'
     },
     email: String,
