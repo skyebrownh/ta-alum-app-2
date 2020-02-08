@@ -4,7 +4,8 @@
   "description": "Awesome Inc's Team Alpha Alumni Web Application 2.0",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
     "mapbox-gl": "^1.4.1",
     "mongoose": "^5.8.11",
     "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

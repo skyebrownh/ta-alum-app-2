@@ -1,18 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2t5ZWJyb3duaCIsImEiOiJjazJjOWhzd2owYnE0M2dxa2tranJyaXN1In0.8-EhU6QpfL2Vgp-m-wDV8A';
 
-// check for browser support
-if (!mapboxgl.supported()) {
-  alert('Your browser does not support Mapbox GL');
-} else {
-  const map = new mapboxgl.Map({
-    container: 'mapbox',
-    style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-84.5037, 38.0406],
-    zoom: 4
-  });
-
-  // add zoom and rotation controls to map
-  map.addControl(new mapboxgl.NavigationControl());
 
   // create marker popup
   const popup = new mapboxgl.Popup({ offset: 25 })
@@ -117,4 +103,3 @@ if (!mapboxgl.supported()) {
   //     map.getCanvas().style.cursor = '';
   //   });
   // });
-}
