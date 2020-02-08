@@ -1,11 +1,3 @@
-
-
-  // create marker popup
-  const popup = new mapboxgl.Popup({ offset: 25 })
-    .setText('This is AInc Alumni member text info.');
-
-  // TODO: populate JSON from mongodb
-
   // add icons to map
   geojson.features.forEach((marker) => {
     // create DOM element for marker

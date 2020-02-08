@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 app.get('/map', async (req, res) => {
   try {
-    const members = await Member.find();
+    const members = await Member.find().populate('location');
     // res.status(200).json({
     //   success: true,
     //   count: members.length,

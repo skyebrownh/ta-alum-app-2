@@ -28,5 +28,24 @@ block body
 
       // add zoom and rotation controls to map
       map.addControl(new mapboxgl.NavigationControl());
+
+      // add icons to map
+      members.forEach(member => {
+        // create marker popup
+        const popup = new mapboxgl.Popup({ offset: 25 })
+          .setText(`${member.first_name} ${member.last_name}`);
+
+        // create DOM element for marker
+        const el = document.createElement('div');
+        el.className = 'marker';
+        el.backgroundColor = 'blue';
+        el.style.width = '45px';
+        el.style.height = '45px';
+        // add marker to map
+        new mapboxgl.Marker(el)
+          .setLngLat([member.location.longitude, member.location.latitude])
+          .setPopup(popup)
+          .addTo(map)
+      });
     }
   //- script(src="/map.js")
