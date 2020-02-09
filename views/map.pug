@@ -29,20 +29,117 @@ block body
       // add zoom and rotation controls to map
       map.addControl(new mapboxgl.NavigationControl());
 
-      // add icons to map
-      members.forEach(member => {
-        // create marker popup
-        const popup = new mapboxgl.Popup({ offset: 25 })
-          .setText(`${member.first_name} ${member.last_name}`);
+      //- // add icons to map
+      //- members.forEach(member => {
+      //-   // create marker popup
+      //-   const popup = new mapboxgl.Popup({ offset: 25 })
+      //-     .setText(`${member.first_name} ${member.last_name}`);
 
-        // create DOM element for marker
-        const el = document.createElement('div');
-        el.className = 'marker';
-        // add marker to map
-        new mapboxgl.Marker(el)
-          .setLngLat([member.location.longitude, member.location.latitude])
-          .setPopup(popup)
-          .addTo(map)
+      //-   // create DOM element for marker
+      //-   const el = document.createElement('div');
+      //-   el.className = 'marker';
+      //-   // add marker to map
+      //-   new mapboxgl.Marker(el)
+      //-     .setLngLat([member.location.longitude, member.location.latitude])
+      //-     .setPopup(popup)
+      //-     .addTo(map)
+      //- });
+
+      // configure clustering
+      map.on('load', function() {
+        //- map.addSource("earthquakes", {
+        //-   type: "geojson",
+        //-   data: "https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson",
+        //-   cluster: true,
+        //-   clusterMaxZoom: 14, // Max zoom to cluster points on
+        //- });
+        map.addSource("alumni", {
+          type: "geojson",
+          data: members,
+          cluster: true,
+          clusterMaxZoom: 14, // Max zoom to cluster points on
+        });
+
+        map.addLayer({
+          id: "clusters",
+          type: "circle",
+          source: "alumni",
+          filter: ["has", "point_count"],
+          paint: {
+            // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+            // with three steps to implement three types of circles:
+            //   * Blue, 20px circles when point count is less than 10
+            //   * Yellow, 30px circles when point count is between 10 and 25
+            //   * Pink, 40px circles when point count is greater than or equal to 25
+            "circle-color": [
+              "step",
+                ["get", "point_count"], // input
+                "#51bbd6", // stop output 0 - blue
+                10, // input 1
+                "#f1f075", // stop output 1 - yellow
+                25, // input 2
+                "#f28cb1" // stop output 2 - pink
+            ],
+            "circle-radius": [
+              "step",
+                ["get", "point_count"], // input
+                20, // stop output 0 - 20px
+                10, // input 1
+                30, // stop output 1 - 30px
+                25, // input 2
+                40 // stop output 2 - 40px
+            ]
+          }
+        });
+
+        map.addLayer({
+          id: "cluster-count",
+          type: "symbol",
+          source: "alumni",
+          filter: ["has", "point_count"],
+          layout: {
+            "text-field": "{point_count_abbreviated}",
+            "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+            "text-size": 12
+          }
+        });
+
+        map.addLayer({
+          id: "unclustered-point",
+          type: "circle",
+          source: "alumni",
+          filter: ["!", ["has", "point_count"]],
+          paint: {
+            "circle-color": "#11b4da",
+            "circle-radius": 4,
+            "circle-stroke-width": 1,
+            "circle-stroke-color": "#fff"
+          }
+        });
+
+        // inspect a cluster on click
+        map.on('click', 'clusters', function (e) {
+          const features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
+          const clusterId = features[0].properties.cluster_id;
+          map.getSource('alumni').getClusterExpansionZoom(clusterId, function (err, zoom) {
+            if (err) return;
+        
+            map.easeTo({
+              center: features[0].geometry.coordinates,
+              zoom: zoom
+            });
+          });
+        });
+        
+        // cursor is pointer on hover
+        map.on('mouseenter', 'clusters', function () {
+          map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // cursor is normal when not hovering
+        map.on('mouseleave', 'clusters', function () {
+          map.getCanvas().style.cursor = '';
+        });
       });
     }
   //- script(src="/map.js")

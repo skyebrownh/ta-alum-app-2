@@ -25,14 +25,33 @@ app.get('/', (req, res) => {
 });
 
 app.get('/map', async (req, res) => {
+  const geojson = {
+    type: 'FeatureCollection',
+    features: []
+  };
+
   try {
     const members = await Member.find().populate('location');
+    members.forEach(member => {
+      const memberObj = member.toObject();
+      geojson.features.push({
+        type: 'Feature',
+        properties: {
+          name: `${memberObj.first_name} ${memberObj.last_name}`
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [memberObj.location.longitude, memberObj.location.latitude]
+        }
+      });
+    });
+
     // res.status(200).json({
     //   success: true,
     //   count: members.length,
     //   data: members
     // });
-    res.render('map', { title: 'Team Alpha Alumni | Map', members: JSON.stringify(members) });
+    res.render('map', { title: 'Team Alpha Alumni | Map', members: JSON.stringify(geojson) });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'server error' });
