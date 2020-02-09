@@ -1,4 +1,4 @@
-  // add icons to map
+// add icons to map
   geojson.features.forEach((marker) => {
     // create DOM element for marker
     const el = document.createElement('div');

@@ -38,9 +38,6 @@ block body
         // create DOM element for marker
         const el = document.createElement('div');
         el.className = 'marker';
-        el.backgroundColor = 'blue';
-        el.style.width = '45px';
-        el.style.height = '45px';
         // add marker to map
         new mapboxgl.Marker(el)
           .setLngLat([member.location.longitude, member.location.latitude])
