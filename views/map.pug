@@ -6,6 +6,8 @@ block links
   link(rel='stylesheet', type="text/css", href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css')
   //- custom stylesheet if needed
   link(rel='stylesheet', type="text/css", href='/map.css')
+  //- mapboxgl spiderifier
+  script(type="text/javascript", src="/mapboxgl-spiderifier.js")
 
 block body
   div#mapbox
@@ -25,6 +27,9 @@ block body
         center: [-84.5037, 38.0406],
         zoom: 4
       });
+
+      const spiderifier = new MapboxglSpiderifier(map, {});
+      console.log(spiderifier);
 
       // add zoom and rotation controls to map
       map.addControl(new mapboxgl.NavigationControl());
