@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Location, Member } = require('./db/models');
+const { Location, Member } = require('../db/models'); 
 
 // home route
 router.get('/', (req, res) => res.render('home', { title: 'Team Alpha Alumni | Home' }));
