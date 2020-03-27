@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { connectionString } = require('../config');
-// const { Location, Member } = require('./models');
 
 const connectdb = async () => {
     try {
