@@ -1,5 +1,72 @@
+{{#if members}}
+<div class="member-group">
+  <ul>
+    {{#each members}}
+    <li class="popup-info">
+      <div class="popup-header">
+        <div class="crop">
+          {{!-- check if image is give before showing default --}}
+          <img src="{{#if image}} {{image}}  {{else}} https://via.placeholder.com/150 {{/if}}"
+            alt="{{first_name}} {{last_name}}">
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="person-info">
+          <h2>{{first_name}} {{last_name}}</h2>
+          {{!-- check if position is given before showing --}}
+          {{#if position}}
+          <p class="position">{{position}}</p>
+          {{/if}}
+        </div>
+      </div>
+      <div class="sub-info">
+        <div class="location">
+          <i class="icon fas fa-lg fa-map-marker-alt"></i>
+          <!-- create lat and long elements to give map.js values for map marker (hide element at all times) -->
+          <div class="latlong">
+            <span id="lat">{{ location.latitude }}</span>
+            <span id="long">{{ location.longitude }}</span>
+          </div>
+          <p>
+            {{!-- check if company is given before showing --}}
+            {{#if company}}
+            <span class="company">{{ company }}</span>&nbsp;
+            {{/if}}
+            <span class="location-point">{{ location.city }}, {{ location.state }}</span>
+          </p>
+        </div>
+        <div class="email">
+          <i class="icon fas fa-lg fa-envelope"></i>
+          <p class="email-address">
+            {{!-- check if email is given before showing --}}
+            {{#if email}}
+            <a href="mailto:{{email}}">{{ email }}</a>
+            {{else}}
+            <span class="blank">None</span>
+            {{/if}}
+          </p>
+        </div>
+        <div class="linkedin">
+          <i class="icon fab fa-lg fa-linkedin-in"></i>
+          <p class="linkedin-link">
+            <!-- check if linkedin url is given before showing link to profile -->
+            {{#if linkedin}}
+            <a href="{{ linkedin }}" target="_blank">View LinkedIn Profile</a>
+            {{else}}
+            <p class="no-profile">No LinkedIn profile for {{ first_name }} {{ last_name }}</p>
+            {{/if}}
+          </p>
+        </div>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+{{/if}}
 <div id="map"></div>
 <script>
+  // DOM constants
+  const memberGroupUl = document.querySelector('.member-group>ul');
+
   // instantiate map object
   const map = L.map('map').setView([38.0406, -84.5037], 4);
 
@@ -7,4 +74,50 @@
   L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=bZBPrAxMkP6v1Se4TGyK', {
     attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
   }).addTo(map);
+
+  // if memberGroupList exists, then show a marker for every member
+  if (memberGroupUl) {
+    // create icon for marker
+    const icon = L.icon({
+      iconUrl: '/ainc-logo-triangle-layer-red.png',
+      iconSize: [40, 40],
+    });
+
+    // create marker cluster to group duplicate/geographically close markers
+    const markerCluster = L.markerClusterGroup();
+
+    // get collection of memberGroupUl child list elements
+    const memberCollection = memberGroupUl.getElementsByClassName('popup-info');
+
+    // add marker and get popup info for each member
+    for (let i = 0; i < memberCollection.length; i++) {
+      // get member popup
+      const popupInfo = memberCollection[i];
+
+      // get lat, long and populate location to display marker
+      const latlong = popupInfo.querySelector('.latlong');
+      const latitude = parseInt(latlong.querySelector('#lat').textContent);
+      const longitude = parseInt(latlong.querySelector('#long').textContent);
+
+      // use latitude, longitude for marker location
+      const marker = L.marker([latitude, longitude], {
+        icon: icon,
+        title: `${popupInfo.querySelector('.location-point').textContent}`,
+        alt: `${popupInfo.querySelector('.location-point').textContent}`,
+        riseOnHover: true,
+        riseOffset: 250
+      });
+
+      // add to marker cluster
+      markerCluster.addLayer(marker);
+
+      const boundMarker = marker.bindPopup(popupInfo);
+
+      marker.addEventListener('click', () => {
+        boundMarker.openPopup();
+      });
+    }
+
+    map.addLayer(markerCluster);
+  }
 </script>

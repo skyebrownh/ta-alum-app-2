@@ -7,15 +7,17 @@ router.get('/', (req, res) => res.render('index', { subtitle: 'Home' }));
 
 // map route
 router.get('/map', async (req, res) => {
+  let allMembers = [];
+
   try {
     // retrieve all the members from db and populate location object
     const members = await Member.find().populate('location');
     members.forEach(member => {
       const memberObj = member.toObject();
-      console.log(memberObj);
+      allMembers.push(memberObj);
     });
-    // send geojson to map view
-    res.render('map', { subtitle: 'Map' });
+    // send members to map view
+    res.render('map', { subtitle: 'Map', members: allMembers });
   } catch (err) {
     res.status(500).json({ err });
   }
