@@ -20,9 +20,8 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mapbox-gl": "^1.4.1",
-    "mongoose": "^5.8.11",
-    "pug": "^2.0.4"
+    "express-handlebars": "^4.0.3",
+    "mongoose": "^5.8.11"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

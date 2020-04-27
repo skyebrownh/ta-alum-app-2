@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const exphbs = require('express-handlebars');
 const connectdb = require('./db/db');
 
 // connect to database
@@ -8,17 +9,13 @@ connectdb();
 // initialize express app
 const app = express();
 
-// body parser
-app.use(express.json());
+// static files
+app.use(express.static(path.join(__dirname, 'public/css')));
+app.use(express.static(path.join(__dirname, 'public/images')));
 
 // view engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-// static files
-app.use(express.static(path.join(__dirname, 'vendors')));
-app.use(express.static(path.join(__dirname, 'styles')));
-app.use(express.static(path.join(__dirname, 'images')));
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 // routes
 app.use('/', require('./routes/index'));

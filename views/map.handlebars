@@ -1,0 +1,10 @@
+<div id="map"></div>
+<script>
+  // instantiate map object
+  const map = L.map('map').setView([38.0406, -84.5037], 4);
+
+  // add tile layer
+  L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=bZBPrAxMkP6v1Se4TGyK', {
+    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+  }).addTo(map);
+</script>

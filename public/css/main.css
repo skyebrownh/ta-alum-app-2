@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/*--- index ---*/
 .wrapper {
   width: 100vw;
   height: 100vh;
@@ -63,4 +76,9 @@
 .content button:active {
   background: white;
   color: #333;
+}
+
+/*--- map ---*/
+#map {
+  height: 100vh;
 }
