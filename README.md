@@ -1,6 +1,6 @@
 # Team Alpha Alumni App 2.0
 
-![team alpha alumni app home screenshot](./images/alum-home-screenshot.png)
+![team alpha alumni app home screenshot](./public/images/alum-home-screenshot.png)
 
 **Table Of Contents**
 
