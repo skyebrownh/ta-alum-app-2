@@ -90,6 +90,7 @@ body {
 .popup-info {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  list-style: none;
 }
 
 .popup-info .blank {
