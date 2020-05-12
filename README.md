@@ -47,12 +47,6 @@ _Locally:_
 
 Visit `localhost:3000` to view your running app
 
-**Necessary Code Switches**
-
-_Locally:_
-
-Nodemon can be interchanged with node in `npm start` script within [package.json](./package.json) for development preferences
-
 ## Support
 
 If you have any questions you can contact the author. Contact Information is provided at the end of this document.
