@@ -13,6 +13,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public/css')));
 app.use(express.static(path.join(__dirname, 'public/images')));
 
+// body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // view engine
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
